@@ -6,8 +6,11 @@ struct Command: ParsableCommand {
       abstract: "hesoten!!!"
     )
 
+    @Argument(help: "File path.")
+    var filePath: String
+
     func run() throws {
-        print("Hello, world!")
+        print(filePath)
     }
 }
 
