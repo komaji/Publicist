@@ -29,7 +29,16 @@ struct Command: ParsableCommand {
             throw RunError.invalidFile
         }
 
-        print(text)
+        var buffer = text
+        buffer += "struct Hoge\(Int.random(in: 1 ..< 10000)) {}\n"
+
+        let data = buffer.data(using: .utf8)!
+        let fileURL = URL(fileURLWithPath: filePath)
+        do {
+            try data.write(to: fileURL, options: .atomic)
+        } catch {
+            print(error)
+        }
     }
 }
 
