@@ -1,5 +1,6 @@
 import ArgumentParser
 import Foundation
+import SwiftSyntax
 
 struct Command: ParsableCommand {
     enum RunError: Error {
