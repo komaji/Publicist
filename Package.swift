@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "hesoten",
+    products: [
+        .executable(name: "hesoten", targets: ["hesoten"]),
+        .library(name: "HesotenKit", targets: ["HesotenKit"])
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
         .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50400.0")),
@@ -14,11 +18,16 @@ let package = Package(
             name: "hesoten",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "SwiftSyntax"
+                "HesotenKit"
             ]
+        ),
+        .target(
+            name: "HesotenKit",
+            dependencies: ["SwiftSyntax"]
         ),
         .testTarget(
             name: "hesotenTests",
-            dependencies: ["hesoten"]),
+            dependencies: ["HesotenKit"]
+        ),
     ]
 )

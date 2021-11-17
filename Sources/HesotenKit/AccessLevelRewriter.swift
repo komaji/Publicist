@@ -1,7 +1,12 @@
 import SwiftSyntax
 
-class AccessLevelRewriter: SyntaxRewriter {
-    override func visit(_ node: ClassDeclSyntax) -> DeclSyntax {
+public class AccessLevelRewriter: SyntaxRewriter {
+    public static func rewrite(source: String) throws -> String {
+        let syntax = try SyntaxParser.parse(source: source)
+        return AccessLevelRewriter().visit(syntax).description
+    }
+
+    override public func visit(_ node: ClassDeclSyntax) -> DeclSyntax {
         let modifiers = node.modifiers ?? SyntaxFactory.makeModifierList([])
         let newModifiers: ModifierListSyntax?
 

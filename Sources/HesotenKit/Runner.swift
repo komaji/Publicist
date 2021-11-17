@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSyntax
 
-struct Runner {
+public struct Runner {
     enum RunError: Error {
         case invalidPath
         case invalidFile
@@ -9,11 +9,11 @@ struct Runner {
 
     private let filePath: String
 
-    init(filePath: String) {
+    public init(filePath: String) {
         self.filePath = filePath
     }
 
-    func run() throws {
+    public func run() throws {
         print(filePath)
 
         guard let fileHandle = FileHandle(forReadingAtPath: filePath) else {
@@ -31,8 +31,7 @@ struct Runner {
         print("")
 
         do {
-            let syntax = try SyntaxParser.parse(source: originalSource)
-            let resultSource = AccessLevelRewriter().visit(syntax).description
+            let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
             print(resultSource)
             // let resultData = resultSource.data(using: .utf8)!
             // let fileURL = URL(fileURLWithPath: filePath)
