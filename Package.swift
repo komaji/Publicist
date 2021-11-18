@@ -27,7 +27,11 @@ let package = Package(
         ),
         .testTarget(
             name: "hesotenTests",
-            dependencies: ["HesotenKit"]
+            dependencies: ["hesoten"]
         ),
+        .testTarget(
+            name: "HesotenKitTests",
+            dependencies: ["HesotenKit"]
+        )
     ]
 )
