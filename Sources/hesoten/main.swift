@@ -26,17 +26,21 @@ struct Command: ParsableCommand {
         let sourceData = fileHandle.readDataToEndOfFile()
         defer { fileHandle.closeFile() }
 
-        guard let text = String(data: sourceData, encoding: .utf8) else {
+        guard let originalSource = String(data: sourceData, encoding: .utf8) else {
             throw RunError.invalidFile
         }
 
-        var buffer = text
-        buffer += "struct Hoge\(Int.random(in: 1 ..< 10000)) {}\n"
+        print(originalSource)
+        print("")
 
-        let data = buffer.data(using: .utf8)!
-        let fileURL = URL(fileURLWithPath: filePath)
         do {
-            try data.write(to: fileURL, options: .atomic)
+            let syntax = try SyntaxParser.parse(source: originalSource)
+            let resultSource = AccessLevelRewriter().visit(syntax).description
+            print(resultSource)
+            // let resultData = resultSource.data(using: .utf8)!
+            // let fileURL = URL(fileURLWithPath: filePath)
+            // try resultData.write(to: fileURL, options: .atomic)
+
         } catch {
             print(error)
         }
