@@ -8,28 +8,36 @@ public class AccessLevelRewriter: SyntaxRewriter {
 
     override public func visit(_ node: ClassDeclSyntax) -> DeclSyntax {
         let modifiers = node.modifiers ?? SyntaxFactory.makeModifierList([])
-        let newModifiers: ModifierListSyntax?
 
-        if !modifiers.hasAccessLevelModifier {
-            newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
-
-        } else if let internalModifier = modifiers.firstInternalModifier {
-            newModifiers = modifiers.replacing(
-                childAt: internalModifier.indexInParent,
-                with: SyntaxFactory.makePublicKeywordModifier()
-            )
+        if modifiers.hasPrivateOrFileprivateModifier {
+            return DeclSyntax(node)
 
         } else {
-            newModifiers = nil
-        }
+            let newNode: ClassDeclSyntax
 
-        let newNode: ClassDeclSyntax? = newModifiers.flatMap {
-            node
-                .withLeadingTrivia(.zero) // remove leading newlines
-                .withModifiers($0) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
-        }
+            if modifiers.hasPublicModifier {
+                newNode = node
 
-        return super.visit(newNode ?? node)
+            } else {
+                let newModifiers: ModifierListSyntax?
+
+                if let internalModifier = modifiers.firstInternalModifier {
+                    newModifiers = modifiers.replacing(
+                        childAt: internalModifier.indexInParent,
+                        with: SyntaxFactory.makePublicKeywordModifier()
+                    )
+
+                } else {
+                    newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
+                }
+
+                newNode = node
+                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withModifiers(newModifiers) // add public keyword
+                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            }
+
+            return super.visit(newNode)
+        }
     }
 }

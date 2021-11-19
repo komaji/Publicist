@@ -5,7 +5,19 @@ extension ModifierListSyntax {
         first { $0.name.tokenKind == .internalKeyword }
     }
 
-    var hasAccessLevelModifier: Bool {
-        contains { $0.name.tokenKind.isAccessLevel }
+    var hasPublicModifier: Bool {
+        contains { $0.name.tokenKind == .publicKeyword }
+    }
+
+    var hasPrivateOrFileprivateModifier: Bool {
+        contains {
+            switch $0.name.tokenKind {
+            case .privateKeyword,
+                 .fileprivateKeyword:
+                return true
+            default:
+                return false
+            }
+        }
     }
 }

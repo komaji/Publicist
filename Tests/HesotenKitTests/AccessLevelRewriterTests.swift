@@ -24,6 +24,14 @@ final class AccessLevelRewriterTests: XCTestCase {
             class Food {}
         }
 
+        fileprivate class Shop {
+            class Food {}
+        }
+
+        private class Shop {
+            class Food {}
+        }
+
         public class shop {}
 
         fileprivate class shop {}
@@ -50,6 +58,14 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         public class Shop {
             public class Food {}
+        }
+
+        fileprivate class Shop {
+            class Food {}
+        }
+
+        private class Shop {
+            class Food {}
         }
 
         public class shop {}
