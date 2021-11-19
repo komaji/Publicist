@@ -6,19 +6,19 @@ final class AccessLevelRewriterTests: XCTestCase {
         let source = """
         class Shop {}
 
-        @objc class Shop {}
+        @available(swift 5.5) class Shop {}
 
         final class Shop {}
 
-        @objc final class Shop {}
+        @available(swift 5.5) final class Shop {}
 
         internal class Shop {}
 
         final internal class Shop {}
 
-        @objc internal class Shop {}
+        @available(swift 5.5) internal class Shop {}
 
-        @objc final internal class Shop {}
+        @available(swift 5.5) final internal class Shop {}
 
         class Shop {
             class Food {}
@@ -42,19 +42,19 @@ final class AccessLevelRewriterTests: XCTestCase {
         let expected = """
         public class Shop {}
 
-        @objc public class Shop {}
+        @available(swift 5.5) public class Shop {}
 
         final public class Shop {}
 
-        @objc final public class Shop {}
+        @available(swift 5.5) final public class Shop {}
 
         public class Shop {}
 
         final public class Shop {}
 
-        @objc public class Shop {}
+        @available(swift 5.5) public class Shop {}
 
-        @objc final public class Shop {}
+        @available(swift 5.5) final public class Shop {}
 
         public class Shop {
             public class Food {}
@@ -73,6 +73,68 @@ final class AccessLevelRewriterTests: XCTestCase {
         fileprivate class shop {}
 
         private class Shop {}
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
+
+    func testStruct() throws {
+        let source = """
+        struct Shop {}
+
+        @available(swift 5.5) struct Shop {}
+
+        internal struct Shop {}
+
+        @available(swift 5.5) internal struct Shop {}
+
+        struct Shop {
+            struct Food {}
+        }
+
+        fileprivate struct Shop {
+            struct Food {}
+        }
+
+        private struct Shop {
+            struct Food {}
+        }
+
+        public struct shop {}
+
+        fileprivate struct shop {}
+
+        private struct Shop {}
+        """
+
+        let expected = """
+        public struct Shop {}
+
+        @available(swift 5.5) public struct Shop {}
+
+        public struct Shop {}
+
+        @available(swift 5.5) public struct Shop {}
+
+        public struct Shop {
+            public struct Food {}
+        }
+
+        fileprivate struct Shop {
+            struct Food {}
+        }
+
+        private struct Shop {
+            struct Food {}
+        }
+
+        public struct shop {}
+
+        fileprivate struct shop {}
+
+        private struct Shop {}
         """
 
         let tested = try AccessLevelRewriter.rewrite(source: source)
