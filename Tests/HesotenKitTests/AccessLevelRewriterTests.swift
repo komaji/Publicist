@@ -141,4 +141,66 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testEnum() throws {
+        let source = """
+        enum Shop {}
+
+        @available(swift 5.5) enum Shop {}
+
+        internal enum Shop {}
+
+        @available(swift 5.5) internal enum Shop {}
+
+        enum Shop {
+            enum Food {}
+        }
+
+        fileprivate enum Shop {
+            enum Food {}
+        }
+
+        private enum Shop {
+            enum Food {}
+        }
+
+        public enum shop {}
+
+        fileprivate enum shop {}
+
+        private enum Shop {}
+        """
+
+        let expected = """
+        public enum Shop {}
+
+        @available(swift 5.5) public enum Shop {}
+
+        public enum Shop {}
+
+        @available(swift 5.5) public enum Shop {}
+
+        public enum Shop {
+            public enum Food {}
+        }
+
+        fileprivate enum Shop {
+            enum Food {}
+        }
+
+        private enum Shop {
+            enum Food {}
+        }
+
+        public enum shop {}
+
+        fileprivate enum shop {}
+
+        private enum Shop {}
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
