@@ -437,4 +437,86 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testFunction() throws {
+        let source = """
+        struct Shop {
+            func serve() {}
+
+            @available(swift 5.5) func serve() {}
+
+            static func serve() {}
+
+            @available(swift 5.5) static func serve() {}
+
+            internal func serve() {}
+
+            @available(swift 5.5) internal func serve() {}
+
+            internal static func serve() {}
+
+            @available(swift 5.5) internal static func serve() {}
+
+            public func serve() {}
+
+            fileprivate func serve() {}
+
+            private func serve() {}
+        }
+
+        public struct Shop {
+            func serve() {}
+        }
+
+        fileprivate struct Shop {
+            func serve() {}
+        }
+
+        private struct Shop {
+            func serve() {}
+        }
+        """
+
+        let expected = """
+        public struct Shop {
+            public func serve() {}
+
+            @available(swift 5.5) public func serve() {}
+
+            public static func serve() {}
+
+            @available(swift 5.5) public static func serve() {}
+
+            public func serve() {}
+
+            @available(swift 5.5) public func serve() {}
+
+            public static func serve() {}
+
+            @available(swift 5.5) public static func serve() {}
+
+            public func serve() {}
+
+            fileprivate func serve() {}
+
+            private func serve() {}
+        }
+
+        public struct Shop {
+            public func serve() {}
+        }
+
+        fileprivate struct Shop {
+            func serve() {}
+        }
+
+        private struct Shop {
+            func serve() {}
+        }
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
