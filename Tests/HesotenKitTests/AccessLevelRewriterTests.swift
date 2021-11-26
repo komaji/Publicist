@@ -203,4 +203,66 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testProtocol() throws {
+        let source = """
+        protocol Shop {}
+
+        @available(swift 5.5) protocol Shop {}
+
+        internal protocol Shop {}
+
+        @available(swift 5.5) internal protocol Shop {}
+
+        enum Shop {
+            protocol Food {}
+        }
+
+        fileprivate enum Shop {
+            protocol Food {}
+        }
+
+        private enum Shop {
+            protocol Food {}
+        }
+
+        public protocol shop {}
+
+        fileprivate protocol shop {}
+
+        private protocol Shop {}
+        """
+
+        let expected = """
+        public protocol Shop {}
+
+        @available(swift 5.5) public protocol Shop {}
+
+        public protocol Shop {}
+
+        @available(swift 5.5) public protocol Shop {}
+
+        public enum Shop {
+            public protocol Food {}
+        }
+
+        fileprivate enum Shop {
+            protocol Food {}
+        }
+
+        private enum Shop {
+            protocol Food {}
+        }
+
+        public protocol shop {}
+
+        fileprivate protocol shop {}
+
+        private protocol Shop {}
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
