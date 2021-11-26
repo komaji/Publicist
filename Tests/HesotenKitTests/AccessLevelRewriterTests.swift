@@ -265,4 +265,66 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testTypealias() throws {
+        let source = """
+        typealias Shop = Void
+
+        @available(swift 5.5) typealias Shop = Void
+
+        internal typealias Shop = Void
+
+        @available(swift 5.5) internal typealias Shop = Void
+
+        enum Shop {
+            typealias Food = Void
+        }
+
+        fileprivate enum Shop {
+            typealias Food = Void
+        }
+
+        private enum Shop {
+            typealias Food = Void
+        }
+
+        public typealias shop = Void
+
+        fileprivate typealias shop = Void
+
+        private typealias Shop = Void
+        """
+
+        let expected = """
+        public typealias Shop = Void
+
+        @available(swift 5.5) public typealias Shop = Void
+
+        public typealias Shop = Void
+
+        @available(swift 5.5) public typealias Shop = Void
+
+        public enum Shop {
+            public typealias Food = Void
+        }
+
+        fileprivate enum Shop {
+            typealias Food = Void
+        }
+
+        private enum Shop {
+            typealias Food = Void
+        }
+
+        public typealias shop = Void
+
+        fileprivate typealias shop = Void
+
+        private typealias Shop = Void
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
