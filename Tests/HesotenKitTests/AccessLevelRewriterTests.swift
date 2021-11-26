@@ -327,4 +327,114 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testVariable() throws {
+        let source = """
+        struct Shop {
+            var name: String
+
+            @available(swift 5.5) var name: String
+
+            static var name: String
+
+            @available(swift 5.5) static var name: String
+
+            internal var name: String
+
+            @available(swift 5.5) internal var name: String
+
+            internal static var name: String
+
+            @available(swift 5.5) internal static var name: String
+
+            private(set) var name: String
+
+            @available(swift 5.5) private(set) var name: String
+
+            @available(swift 5.5) private(set) static var name: String
+
+            internal private(set) var name: String
+
+            @available(swift 5.5) internal private(set) var name: String
+
+            @available(swift 5.5) internal private(set) static var name: String
+
+            public var name: String
+
+            fileprivate var name: String
+
+            private var name: String
+
+            public private(set) var name: String
+        }
+
+        public struct Shop {
+            var name: String
+        }
+
+        fileprivate struct Shop {
+            var name: String
+        }
+
+        private struct Shop {
+            var name: String
+        }
+        """
+
+        let expected = """
+        public struct Shop {
+            public var name: String
+
+            @available(swift 5.5) public var name: String
+
+            public static var name: String
+
+            @available(swift 5.5) public static var name: String
+
+            public var name: String
+
+            @available(swift 5.5) public var name: String
+
+            public static var name: String
+
+            @available(swift 5.5) public static var name: String
+
+            public private(set) var name: String
+
+            @available(swift 5.5) public private(set) var name: String
+
+            @available(swift 5.5) public private(set) static var name: String
+
+            public private(set) var name: String
+
+            @available(swift 5.5) public private(set) var name: String
+
+            @available(swift 5.5) public private(set) static var name: String
+
+            public var name: String
+
+            fileprivate var name: String
+
+            private var name: String
+
+            public private(set) var name: String
+        }
+
+        public struct Shop {
+            public var name: String
+        }
+
+        fileprivate struct Shop {
+            var name: String
+        }
+
+        private struct Shop {
+            var name: String
+        }
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
