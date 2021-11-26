@@ -266,6 +266,44 @@ final class AccessLevelRewriterTests: XCTestCase {
         XCTAssertEqual(tested, expected)
     }
 
+    func testExtension() throws {
+        let source = """
+        extension Shop {}
+
+        @available(swift 5.5) extension Shop {}
+
+        internal extension Shop {}
+
+        @available(swift 5.5) internal extension Shop {}
+
+        public extension shop {}
+
+        fileprivate extension shop {}
+
+        private extension Shop {}
+        """
+
+        let expected = """
+        public extension Shop {}
+
+        @available(swift 5.5) public extension Shop {}
+
+        public extension Shop {}
+
+        @available(swift 5.5) public extension Shop {}
+
+        public extension shop {}
+
+        fileprivate extension shop {}
+
+        private extension Shop {}
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
+
     func testTypealias() throws {
         let source = """
         typealias Shop = Void
