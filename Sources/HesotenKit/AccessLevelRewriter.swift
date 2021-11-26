@@ -213,4 +213,36 @@ public class AccessLevelRewriter: SyntaxRewriter {
             return DeclSyntax(newNode)
         }
     }
+
+    override public func visit(_ node: FunctionDeclSyntax) -> DeclSyntax {
+        let modifiers = node.modifiers ?? SyntaxFactory.makeModifierList([])
+
+        if modifiers.hasPublicModifier
+            || modifiers.hasFileprivateModifier
+            || modifiers.hasPrivateModifier {
+            return DeclSyntax(node)
+
+        } else {
+            let newModifiers: ModifierListSyntax?
+
+            if let internalModifier = modifiers.firstInternalModifier {
+                newModifiers = modifiers.replacing(
+                    childAt: internalModifier.indexInParent,
+                    with: SyntaxFactory.makePublicKeywordModifier()
+                )
+
+            } else {
+                newModifiers = modifiers
+                    .withoutLeadingTrivia()
+                    .prepending(SyntaxFactory.makePublicKeywordModifier())
+            }
+
+            let newNode = node
+                .withLeadingTrivia(.zero) // remove leading newlines
+                .withModifiers(newModifiers) // add public keyword
+                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+
+            return DeclSyntax(newNode)
+        }
+    }
 }
