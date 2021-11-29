@@ -534,6 +534,88 @@ final class AccessLevelRewriterTests: XCTestCase {
         XCTAssertEqual(tested, expected)
     }
 
+    func testInitializer() throws {
+        let source = """
+        struct Shop {
+            init() {}
+
+            @available(swift 5.5) init() {}
+
+            convenience init() {}
+
+            @available(swift 5.5) convenience init() {}
+
+            internal init() {}
+
+            @available(swift 5.5) internal init() {}
+
+            internal convenience init() {}
+
+            @available(swift 5.5) internal convenience init() {}
+
+            public init() {}
+
+            fileprivate init() {}
+
+            private init() {}
+        }
+
+        public struct Shop {
+            init() {}
+        }
+
+        fileprivate struct Shop {
+            init() {}
+        }
+
+        private struct Shop {
+            init() {}
+        }
+        """
+
+        let expected = """
+        public struct Shop {
+            public init() {}
+
+            @available(swift 5.5) public init() {}
+
+            public convenience init() {}
+
+            @available(swift 5.5) public convenience init() {}
+
+            public init() {}
+
+            @available(swift 5.5) public init() {}
+
+            public convenience init() {}
+
+            @available(swift 5.5) public convenience init() {}
+
+            public init() {}
+
+            fileprivate init() {}
+
+            private init() {}
+        }
+
+        public struct Shop {
+            public init() {}
+        }
+
+        fileprivate struct Shop {
+            init() {}
+        }
+
+        private struct Shop {
+            init() {}
+        }
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
+
     func testFunction() throws {
         let source = """
         struct Shop {
