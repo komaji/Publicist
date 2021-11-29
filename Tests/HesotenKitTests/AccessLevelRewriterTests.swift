@@ -304,6 +304,64 @@ final class AccessLevelRewriterTests: XCTestCase {
         XCTAssertEqual(tested, expected)
     }
 
+    func testAssociatedtype() throws {
+        let source = """
+        protocol Shop {
+            associatedtype Food
+
+            @available(swift 5.5) associatedtype Food
+
+            internal associatedtype Food
+
+            @available(swift 5.5) internal associatedtype Food
+
+            public associatedtype Food
+
+            fileprivate associatedtype Food
+
+            private associatedtype Food
+        }
+
+        fileprivate protocol Shop {
+            associatedtype Food
+        }
+
+        private protocol Shop {
+            associatedtype Food
+        }
+        """
+
+        let expected = """
+        public protocol Shop {
+            public associatedtype Food
+
+            @available(swift 5.5) public associatedtype Food
+
+            public associatedtype Food
+
+            @available(swift 5.5) public associatedtype Food
+
+            public associatedtype Food
+
+            fileprivate associatedtype Food
+
+            private associatedtype Food
+        }
+
+        fileprivate protocol Shop {
+            associatedtype Food
+        }
+
+        private protocol Shop {
+            associatedtype Food
+        }
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
+
     func testTypealias() throws {
         let source = """
         typealias Shop = Void
