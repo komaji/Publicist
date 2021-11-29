@@ -181,6 +181,34 @@ public class AccessLevelRewriter: SyntaxRewriter {
         }
     }
 
+    override public func visit(_ node: AssociatedtypeDeclSyntax) -> DeclSyntax {
+        let modifiers = node.modifiers ?? SyntaxFactory.makeModifierList([])
+
+        if modifiers.hasPrivateOrFileprivateModifier || modifiers.hasPublicModifier {
+            return DeclSyntax(node)
+
+        } else {
+            let newModifiers: ModifierListSyntax?
+
+            if let internalModifier = modifiers.firstInternalModifier {
+                newModifiers = modifiers.replacing(
+                    childAt: internalModifier.indexInParent,
+                    with: SyntaxFactory.makePublicKeywordModifier()
+                )
+
+            } else {
+                newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
+            }
+
+            let newNode = node
+                .withLeadingTrivia(.zero) // remove leading newlines
+                .withModifiers(newModifiers) // add public keyword
+                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+
+            return DeclSyntax(newNode)
+        }
+    }
+
     override public func visit(_ node: TypealiasDeclSyntax) -> DeclSyntax {
         let modifiers = node.modifiers ?? SyntaxFactory.makeModifierList([])
 
