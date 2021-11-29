@@ -697,4 +697,70 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         XCTAssertEqual(tested, expected)
     }
+
+    func testSubscript() throws {
+        let source = """
+        struct Shop {
+            subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5) subscript(index: Int) -> Int { 0 }
+
+            internal subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5) internal subscript(index: Int) -> Int { 0 }
+
+            public subscript(index: Int) -> Int { 0 }
+
+            fileprivate subscript(index: Int) -> Int { 0 }
+
+            private subscript(index: Int) -> Int { 0 }
+        }
+
+        public struct Shop {
+            subscript(index: Int) -> Int { 0 }
+        }
+
+        fileprivate struct Shop {
+            subscript(index: Int) -> Int { 0 }
+        }
+
+        private struct Shop {
+            subscript(index: Int) -> Int { 0 }
+        }
+        """
+
+        let expected = """
+        public struct Shop {
+            public subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5) public subscript(index: Int) -> Int { 0 }
+
+            public subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5) public subscript(index: Int) -> Int { 0 }
+
+            public subscript(index: Int) -> Int { 0 }
+
+            fileprivate subscript(index: Int) -> Int { 0 }
+
+            private subscript(index: Int) -> Int { 0 }
+        }
+
+        public struct Shop {
+            public subscript(index: Int) -> Int { 0 }
+        }
+
+        fileprivate struct Shop {
+            subscript(index: Int) -> Int { 0 }
+        }
+
+        private struct Shop {
+            subscript(index: Int) -> Int { 0 }
+        }
+        """
+
+        let tested = try AccessLevelRewriter.rewrite(source: source)
+
+        XCTAssertEqual(tested, expected)
+    }
 }
