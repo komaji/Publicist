@@ -32,7 +32,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 }
 
                 newNode = node
-                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withoutLeadingTrivia() // remove leading newlines
                     .withModifiers(newModifiers) // add public keyword
                     .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
             }
@@ -67,7 +67,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 }
 
                 newNode = node
-                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withoutLeadingTrivia() // remove leading newlines
                     .withModifiers(newModifiers) // add public keyword
                     .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
             }
@@ -102,7 +102,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 }
 
                 newNode = node
-                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withoutLeadingTrivia() // remove leading newlines
                     .withModifiers(newModifiers) // add public keyword
                     .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
             }
@@ -137,7 +137,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 }
 
                 newNode = node
-                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withoutLeadingTrivia() // remove leading newlines
                     .withModifiers(newModifiers) // add public keyword
                     .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
             }
@@ -172,7 +172,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 }
 
                 newNode = node
-                    .withLeadingTrivia(.zero) // remove leading newlines
+                    .withoutLeadingTrivia() // remove leading newlines
                     .withModifiers(newModifiers) // add public keyword
                     .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
             }
@@ -201,7 +201,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
@@ -229,7 +229,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
@@ -267,7 +267,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
@@ -297,7 +297,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
@@ -327,7 +327,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
@@ -355,7 +355,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
             }
 
             let newNode = node
-                .withLeadingTrivia(.zero) // remove leading newlines
+                .withoutLeadingTrivia() // remove leading newlines
                 .withModifiers(newModifiers) // add public keyword
                 .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
 
