@@ -31,10 +31,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
                 }
 
-                newNode = node
-                    .withoutLeadingTrivia() // remove leading newlines
-                    .withModifiers(newModifiers) // add public keyword
-                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+                newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
             }
 
             return super.visit(newNode)
@@ -66,10 +63,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
                 }
 
-                newNode = node
-                    .withoutLeadingTrivia() // remove leading newlines
-                    .withModifiers(newModifiers) // add public keyword
-                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+                newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
             }
 
             return super.visit(newNode)
@@ -101,10 +95,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
                 }
 
-                newNode = node
-                    .withoutLeadingTrivia() // remove leading newlines
-                    .withModifiers(newModifiers) // add public keyword
-                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+                newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
             }
 
             return super.visit(newNode)
@@ -136,10 +127,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
                 }
 
-                newNode = node
-                    .withoutLeadingTrivia() // remove leading newlines
-                    .withModifiers(newModifiers) // add public keyword
-                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+                newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
             }
 
             return super.visit(newNode)
@@ -171,10 +159,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
                 }
 
-                newNode = node
-                    .withoutLeadingTrivia() // remove leading newlines
-                    .withModifiers(newModifiers) // add public keyword
-                    .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+                newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
             }
 
             return super.visit(newNode)
@@ -200,10 +185,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
@@ -228,10 +210,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
@@ -266,10 +245,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     .prepending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
@@ -296,10 +272,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     .prepending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
@@ -326,10 +299,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                     .prepending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
@@ -354,10 +324,7 @@ public class AccessLevelRewriter: SyntaxRewriter {
                 newModifiers = modifiers.appending(SyntaxFactory.makePublicKeywordModifier())
             }
 
-            let newNode = node
-                .withoutLeadingTrivia() // remove leading newlines
-                .withModifiers(newModifiers) // add public keyword
-                .withLeadingTrivia(node.leadingTrivia ?? .zero) // add leading newlines
+            let newNode = node.withModifiersKeepingLeadingTrivia(newModifiers)
 
             return DeclSyntax(newNode)
         }
