@@ -1,24 +1,15 @@
 import SwiftSyntax
 
-protocol WithModifiersProtocol {
+protocol WithModifiersProtocol: SyntaxProtocol {
+    var modifiers: ModifierListSyntax? { get }
+
     func withModifiers(_ newChild: ModifierListSyntax?) -> Self
 }
-extension WithModifiersProtocol where Self: SyntaxProtocol {
+
+extension WithModifiersProtocol {
     func withModifiersKeepingLeadingTrivia(_ newChild: ModifierListSyntax?) -> Self {
-        self.withoutLeadingTrivia() // remove leading newlines
-            .withModifiers(newChild) // add public keyword
-            .withLeadingTrivia(leadingTrivia ?? .zero) // add leading newlines
+        self.withoutLeadingTrivia()
+            .withModifiers(newChild)
+            .withLeadingTrivia(leadingTrivia ?? .zero)
     }
 }
-
-extension ClassDeclSyntax: WithModifiersProtocol {}
-extension StructDeclSyntax: WithModifiersProtocol {}
-extension EnumDeclSyntax: WithModifiersProtocol {}
-extension ExtensionDeclSyntax: WithModifiersProtocol {}
-extension ProtocolDeclSyntax: WithModifiersProtocol {}
-extension AssociatedtypeDeclSyntax: WithModifiersProtocol {}
-extension TypealiasDeclSyntax: WithModifiersProtocol {}
-extension VariableDeclSyntax: WithModifiersProtocol {}
-extension InitializerDeclSyntax: WithModifiersProtocol {}
-extension FunctionDeclSyntax: WithModifiersProtocol {}
-extension SubscriptDeclSyntax: WithModifiersProtocol {}

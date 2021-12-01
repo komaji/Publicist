@@ -14,11 +14,11 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         internal class Shop {}
 
-        final internal class Shop {}
+        internal final class Shop {}
 
         @available(swift 5.5) internal class Shop {}
 
-        @available(swift 5.5) final internal class Shop {}
+        @available(swift 5.5) internal final class Shop {}
 
         class Shop {
             class Food {}
@@ -44,17 +44,17 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public class Shop {}
 
-        final public class Shop {}
+        public final class Shop {}
 
-        @available(swift 5.5) final public class Shop {}
+        @available(swift 5.5) public final class Shop {}
 
         public class Shop {}
 
-        final public class Shop {}
+        public final class Shop {}
 
         @available(swift 5.5) public class Shop {}
 
-        @available(swift 5.5) final public class Shop {}
+        @available(swift 5.5) public final class Shop {}
 
         public class Shop {
             public class Food {}
