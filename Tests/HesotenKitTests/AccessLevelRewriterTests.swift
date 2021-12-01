@@ -8,9 +8,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) class Shop {}
 
+        @available(swift 5.5)
+        class Shop {}
+
         final class Shop {}
 
         @available(swift 5.5) final class Shop {}
+
+        @available(swift 5.5)
+        final class Shop {}
 
         internal class Shop {}
 
@@ -18,7 +24,13 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) internal class Shop {}
 
+        @available(swift 5.5)
+        internal class Shop {}
+
         @available(swift 5.5) internal final class Shop {}
+
+        @available(swift 5.5)
+        internal final class Shop {}
 
         class Shop {
             class Food {}
@@ -44,9 +56,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public class Shop {}
 
+        @available(swift 5.5)
+        public class Shop {}
+
         public final class Shop {}
 
         @available(swift 5.5) public final class Shop {}
+
+        @available(swift 5.5)
+        public final class Shop {}
 
         public class Shop {}
 
@@ -54,7 +72,13 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public class Shop {}
 
+        @available(swift 5.5)
+        public class Shop {}
+
         @available(swift 5.5) public final class Shop {}
+
+        @available(swift 5.5)
+        public final class Shop {}
 
         public class Shop {
             public class Food {}
@@ -86,9 +110,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) struct Shop {}
 
+        @available(swift 5.5)
+        struct Shop {}
+
         internal struct Shop {}
 
         @available(swift 5.5) internal struct Shop {}
+
+        @available(swift 5.5)
+        internal struct Shop {}
 
         struct Shop {
             struct Food {}
@@ -114,9 +144,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public struct Shop {}
 
+        @available(swift 5.5)
+        public struct Shop {}
+
         public struct Shop {}
 
         @available(swift 5.5) public struct Shop {}
+
+        @available(swift 5.5)
+        public struct Shop {}
 
         public struct Shop {
             public struct Food {}
@@ -148,9 +184,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) enum Shop {}
 
+        @available(swift 5.5)
+        enum Shop {}
+
         internal enum Shop {}
 
         @available(swift 5.5) internal enum Shop {}
+
+        @available(swift 5.5)
+        internal enum Shop {}
 
         enum Shop {
             enum Food {}
@@ -176,9 +218,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public enum Shop {}
 
+        @available(swift 5.5)
+        public enum Shop {}
+
         public enum Shop {}
 
         @available(swift 5.5) public enum Shop {}
+
+        @available(swift 5.5)
+        public enum Shop {}
 
         public enum Shop {
             public enum Food {}
@@ -210,9 +258,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) protocol Shop {}
 
+        @available(swift 5.5)
+        protocol Shop {}
+
         internal protocol Shop {}
 
         @available(swift 5.5) internal protocol Shop {}
+
+        @available(swift 5.5)
+        internal protocol Shop {}
 
         enum Shop {
             protocol Food {}
@@ -238,9 +292,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public protocol Shop {}
 
+        @available(swift 5.5)
+        public protocol Shop {}
+
         public protocol Shop {}
 
         @available(swift 5.5) public protocol Shop {}
+
+        @available(swift 5.5)
+        public protocol Shop {}
 
         public enum Shop {
             public protocol Food {}
@@ -272,9 +332,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) extension Shop {}
 
+        @available(swift 5.5)
+        extension Shop {}
+
         internal extension Shop {}
 
         @available(swift 5.5) internal extension Shop {}
+
+        @available(swift 5.5)
+        internal extension Shop {}
 
         public extension shop {}
 
@@ -288,9 +354,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public extension Shop {}
 
+        @available(swift 5.5)
+        public extension Shop {}
+
         public extension Shop {}
 
         @available(swift 5.5) public extension Shop {}
+
+        @available(swift 5.5)
+        public extension Shop {}
 
         public extension shop {}
 
@@ -311,9 +383,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) associatedtype Food
 
+            @available(swift 5.5)
+            associatedtype Food
+
             internal associatedtype Food
 
             @available(swift 5.5) internal associatedtype Food
+
+            @available(swift 5.5)
+            internal associatedtype Food
 
             public associatedtype Food
 
@@ -337,9 +415,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) public associatedtype Food
 
+            @available(swift 5.5)
+            public associatedtype Food
+
             public associatedtype Food
 
             @available(swift 5.5) public associatedtype Food
+
+            @available(swift 5.5)
+            public associatedtype Food
 
             public associatedtype Food
 
@@ -368,9 +452,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) typealias Shop = Void
 
+        @available(swift 5.5)
+        typealias Shop = Void
+
         internal typealias Shop = Void
 
         @available(swift 5.5) internal typealias Shop = Void
+
+        @available(swift 5.5)
+        internal typealias Shop = Void
 
         enum Shop {
             typealias Food = Void
@@ -396,9 +486,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
         @available(swift 5.5) public typealias Shop = Void
 
+        @available(swift 5.5)
+        public typealias Shop = Void
+
         public typealias Shop = Void
 
         @available(swift 5.5) public typealias Shop = Void
+
+        @available(swift 5.5)
+        public typealias Shop = Void
 
         public enum Shop {
             public typealias Food = Void
@@ -431,29 +527,53 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) var name: String
 
+            @available(swift 5.5)
+            var name: String
+
             static var name: String
 
             @available(swift 5.5) static var name: String
+
+            @available(swift 5.5)
+            static var name: String
 
             internal var name: String
 
             @available(swift 5.5) internal var name: String
 
+            @available(swift 5.5)
+            internal var name: String
+
             internal static var name: String
 
             @available(swift 5.5) internal static var name: String
+
+            @available(swift 5.5)
+            internal static var name: String
 
             private(set) var name: String
 
             @available(swift 5.5) private(set) var name: String
 
+            @available(swift 5.5)
+            private(set) var name: String
+
             @available(swift 5.5) private(set) static var name: String
+
+            @available(swift 5.5)
+            private(set) static var name: String
 
             internal private(set) var name: String
 
             @available(swift 5.5) internal private(set) var name: String
 
+            @available(swift 5.5)
+            internal private(set) var name: String
+
             @available(swift 5.5) internal private(set) static var name: String
+
+            @available(swift 5.5)
+            internal private(set) static var name: String
 
             public var name: String
 
@@ -483,29 +603,53 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) public var name: String
 
+            @available(swift 5.5)
+            public var name: String
+
             public static var name: String
 
             @available(swift 5.5) public static var name: String
+
+            @available(swift 5.5)
+            public static var name: String
 
             public var name: String
 
             @available(swift 5.5) public var name: String
 
+            @available(swift 5.5)
+            public var name: String
+
             public static var name: String
 
             @available(swift 5.5) public static var name: String
 
-            public private(set) var name: String
-
-            @available(swift 5.5) public private(set) var name: String
-
-            @available(swift 5.5) public private(set) static var name: String
+            @available(swift 5.5)
+            public static var name: String
 
             public private(set) var name: String
 
             @available(swift 5.5) public private(set) var name: String
 
+            @available(swift 5.5)
+            public private(set) var name: String
+
             @available(swift 5.5) public private(set) static var name: String
+
+            @available(swift 5.5)
+            public private(set) static var name: String
+
+            public private(set) var name: String
+
+            @available(swift 5.5) public private(set) var name: String
+
+            @available(swift 5.5)
+            public private(set) var name: String
+
+            @available(swift 5.5) public private(set) static var name: String
+
+            @available(swift 5.5)
+            public private(set) static var name: String
 
             public var name: String
 
@@ -541,17 +685,29 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) init() {}
 
+            @available(swift 5.5)
+            init() {}
+
             convenience init() {}
 
             @available(swift 5.5) convenience init() {}
+
+            @available(swift 5.5)
+            convenience init() {}
 
             internal init() {}
 
             @available(swift 5.5) internal init() {}
 
+            @available(swift 5.5)
+            internal init() {}
+
             internal convenience init() {}
 
             @available(swift 5.5) internal convenience init() {}
+
+            @available(swift 5.5)
+            internal convenience init() {}
 
             public init() {}
 
@@ -579,17 +735,29 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) public init() {}
 
+            @available(swift 5.5)
+            public init() {}
+
             public convenience init() {}
 
             @available(swift 5.5) public convenience init() {}
+
+            @available(swift 5.5)
+            public convenience init() {}
 
             public init() {}
 
             @available(swift 5.5) public init() {}
 
+            @available(swift 5.5)
+            public init() {}
+
             public convenience init() {}
 
             @available(swift 5.5) public convenience init() {}
+
+            @available(swift 5.5)
+            public convenience init() {}
 
             public init() {}
 
@@ -623,17 +791,29 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) func serve() {}
 
+            @available(swift 5.5)
+            func serve() {}
+
             static func serve() {}
 
             @available(swift 5.5) static func serve() {}
+
+            @available(swift 5.5)
+            static func serve() {}
 
             internal func serve() {}
 
             @available(swift 5.5) internal func serve() {}
 
+            @available(swift 5.5)
+            internal func serve() {}
+
             internal static func serve() {}
 
             @available(swift 5.5) internal static func serve() {}
+
+            @available(swift 5.5)
+            internal static func serve() {}
 
             public func serve() {}
 
@@ -661,17 +841,29 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) public func serve() {}
 
+            @available(swift 5.5)
+            public func serve() {}
+
             public static func serve() {}
 
             @available(swift 5.5) public static func serve() {}
+
+            @available(swift 5.5)
+            public static func serve() {}
 
             public func serve() {}
 
             @available(swift 5.5) public func serve() {}
 
+            @available(swift 5.5)
+            public func serve() {}
+
             public static func serve() {}
 
             @available(swift 5.5) public static func serve() {}
+
+            @available(swift 5.5)
+            public static func serve() {}
 
             public func serve() {}
 
@@ -705,9 +897,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) subscript(index: Int) -> Int { 0 }
 
+            @available(swift 5.5)
+            subscript(index: Int) -> Int { 0 }
+
             internal subscript(index: Int) -> Int { 0 }
 
             @available(swift 5.5) internal subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5)
+            internal subscript(index: Int) -> Int { 0 }
 
             public subscript(index: Int) -> Int { 0 }
 
@@ -735,9 +933,15 @@ final class AccessLevelRewriterTests: XCTestCase {
 
             @available(swift 5.5) public subscript(index: Int) -> Int { 0 }
 
+            @available(swift 5.5)
+            public subscript(index: Int) -> Int { 0 }
+
             public subscript(index: Int) -> Int { 0 }
 
             @available(swift 5.5) public subscript(index: Int) -> Int { 0 }
+
+            @available(swift 5.5)
+            public subscript(index: Int) -> Int { 0 }
 
             public subscript(index: Int) -> Int { 0 }
 

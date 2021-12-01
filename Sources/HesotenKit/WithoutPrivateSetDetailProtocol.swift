@@ -1,7 +1,6 @@
 import SwiftSyntax
 
 protocol WithoutPrivateSetDetailProtocol: WithModifiersProtocol {}
-
 extension WithoutPrivateSetDetailProtocol {
     func changingAccessLevelIntoPublic() -> Self {
         let modifiers = modifiers ?? SyntaxFactory.makeModifierList([])
@@ -9,20 +8,20 @@ extension WithoutPrivateSetDetailProtocol {
             return self
         }
 
-        let newModifiers: ModifierListSyntax?
+        let newModifiersWithoutLeadingTrivia: ModifierListSyntax?
         if let internalModifier = modifiers.first(of: \.isInternal) {
-            newModifiers = modifiers.replacing(
+            newModifiersWithoutLeadingTrivia = modifiers.replacing(
                 childAt: internalModifier.indexInParent,
                 with: SyntaxFactory.makePublicKeywordModifier()
             )
 
         } else {
-            newModifiers = modifiers
+            newModifiersWithoutLeadingTrivia = modifiers
                 .withoutLeadingTrivia()
                 .prepending(SyntaxFactory.makePublicKeywordModifier())
         }
 
-        return withModifiersKeepingLeadingTrivia(newModifiers)
+        return withModifiersKeepingLeadingTrivia(newModifiersWithoutLeadingTrivia)
     }
 }
 
