@@ -15,6 +15,8 @@ struct Runner {
     }
 
     func run() throws {
+        print("📝 Rewriting \(filePath)")
+
         guard let fileHandle = FileHandle(forReadingAtPath: filePath) else {
             throw RunError.invalidPath
         }
@@ -29,5 +31,7 @@ struct Runner {
         let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
         let resultData = resultSource.data(using: .utf8)!
         try resultData.write(to: fileURL, options: .atomic)
+
+        print("✅ Complete")
     }
 }
