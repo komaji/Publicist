@@ -8,14 +8,13 @@ struct Runner {
     }
 
     private let filePath: String
+    private var fileURL: URL { .init(fileURLWithPath: filePath) }
 
     init(filePath: String) {
         self.filePath = filePath
     }
 
     func run() throws {
-        print(filePath)
-
         guard let fileHandle = FileHandle(forReadingAtPath: filePath) else {
             throw RunError.invalidPath
         }
@@ -27,18 +26,8 @@ struct Runner {
             throw RunError.invalidFile
         }
 
-        print(originalSource)
-        print("")
-
-        do {
-            let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
-            print(resultSource)
-            // let resultData = resultSource.data(using: .utf8)!
-            // let fileURL = URL(fileURLWithPath: filePath)
-            // try resultData.write(to: fileURL, options: .atomic)
-
-        } catch {
-            print(error)
-        }
+        let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
+        let resultData = resultSource.data(using: .utf8)!
+        try resultData.write(to: fileURL, options: .atomic)
     }
 }
