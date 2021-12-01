@@ -26,10 +26,6 @@ let package = Package(
             dependencies: ["SwiftSyntax"]
         ),
         .testTarget(
-            name: "hesotenTests",
-            dependencies: ["hesoten"]
-        ),
-        .testTarget(
             name: "HesotenKitTests",
             dependencies: ["HesotenKit"]
         )
