@@ -2,11 +2,6 @@ import Foundation
 import HesotenKit
 
 struct Runner {
-    enum RunError: Error {
-        case invalidPath
-        case invalidFile
-    }
-
     let argumentGroup: ArgumentGroup
 
     private var fileURL: URL { .init(fileURLWithPath: argumentGroup.filePath) }
@@ -15,14 +10,14 @@ struct Runner {
         print("📝 Rewriting \(argumentGroup.filePath)")
 
         guard let fileHandle = FileHandle(forReadingAtPath: argumentGroup.filePath) else {
-            throw RunError.invalidPath
+            throw HesotenError.invalidPath
         }
 
         let sourceData = fileHandle.readDataToEndOfFile()
         defer { fileHandle.closeFile() }
 
         guard let originalSource = String(data: sourceData, encoding: .utf8) else {
-            throw RunError.invalidFile
+            throw HesotenError.invalidFile
         }
 
         let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
