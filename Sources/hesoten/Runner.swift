@@ -7,17 +7,14 @@ struct Runner {
         case invalidFile
     }
 
-    private let filePath: String
-    private var fileURL: URL { .init(fileURLWithPath: filePath) }
+    let argumentGroup: ArgumentGroup
 
-    init(filePath: String) {
-        self.filePath = filePath
-    }
+    private var fileURL: URL { .init(fileURLWithPath: argumentGroup.filePath) }
 
     func run() throws {
-        print("📝 Rewriting \(filePath)")
+        print("📝 Rewriting \(argumentGroup.filePath)")
 
-        guard let fileHandle = FileHandle(forReadingAtPath: filePath) else {
+        guard let fileHandle = FileHandle(forReadingAtPath: argumentGroup.filePath) else {
             throw RunError.invalidPath
         }
 
@@ -29,8 +26,13 @@ struct Runner {
         }
 
         let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)
-        let resultData = resultSource.data(using: .utf8)!
-        try resultData.write(to: fileURL, options: .atomic)
+
+        if argumentGroup.dryRun {
+            print(resultSource)
+        } else {
+            let resultData = resultSource.data(using: .utf8)!
+            try resultData.write(to: fileURL, options: .atomic)
+        }
 
         print("✅ Complete")
     }
