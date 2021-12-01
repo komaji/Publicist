@@ -1,7 +1,7 @@
 import Foundation
-import SwiftSyntax
+import HesotenKit
 
-public struct Runner {
+struct Runner {
     enum RunError: Error {
         case invalidPath
         case invalidFile
@@ -9,11 +9,11 @@ public struct Runner {
 
     private let filePath: String
 
-    public init(filePath: String) {
+    init(filePath: String) {
         self.filePath = filePath
     }
 
-    public func run() throws {
+    func run() throws {
         print(filePath)
 
         guard let fileHandle = FileHandle(forReadingAtPath: filePath) else {
