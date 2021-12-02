@@ -1,7 +1,6 @@
 import SwiftSyntax
 
 protocol VisitChildrenProtocol: WithModifiersProtocol & SyntaxProtocol {}
-
 extension VisitChildrenProtocol {
     var shouldVisitChildren: Bool {
         let modifiers = modifiers ?? SyntaxFactory.makeModifierList([])
