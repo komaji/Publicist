@@ -2,7 +2,7 @@ import SwiftSyntax
 
 protocol WithPrivateSetDetailProtocol: WithModifiersProtocol {}
 extension WithPrivateSetDetailProtocol {
-    func changingAccessLevelIntoPublic() -> Self {
+    func changingInternalIntoPublic() -> Self {
         let modifiers = modifiers ?? SyntaxFactory.makeModifierList([])
         if modifiers.containsAny(of: \.isPublic, \.isFileprivate, \.isPrivateGetSet) {
             return self

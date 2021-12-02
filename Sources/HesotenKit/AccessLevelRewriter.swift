@@ -7,57 +7,57 @@ public class AccessLevelRewriter: SyntaxRewriter {
     }
 
     override public func visit(_ node: ClassDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return node.shouldVisitChildren ? super.visit(newNode) : DeclSyntax(node)
     }
 
     override public func visit(_ node: StructDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return node.shouldVisitChildren ? super.visit(newNode) : DeclSyntax(node)
     }
 
     override public func visit(_ node: EnumDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return node.shouldVisitChildren ? super.visit(newNode) : DeclSyntax(node)
     }
 
     override public func visit(_ node: ProtocolDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return node.shouldVisitChildren ? super.visit(newNode) : DeclSyntax(node)
     }
 
     override public func visit(_ node: ExtensionDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return node.shouldVisitChildren ? super.visit(newNode) : DeclSyntax(node)
     }
 
     override public func visit(_ node: AssociatedtypeDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 
     override public func visit(_ node: TypealiasDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 
     override public func visit(_ node: VariableDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 
     override public func visit(_ node: InitializerDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 
     override public func visit(_ node: FunctionDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 
     override public func visit(_ node: SubscriptDeclSyntax) -> DeclSyntax {
-        let newNode = node.changingAccessLevelIntoPublic()
+        let newNode = node.changingInternalIntoPublic()
         return DeclSyntax(newNode)
     }
 }
