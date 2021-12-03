@@ -1,5 +1,5 @@
 import XCTest
-import HesotenKit
+import PublicistKit
 
 final class AccessLevelRewriterTests: XCTestCase {
     func testClass() throws {

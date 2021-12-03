@@ -2,7 +2,7 @@ import ArgumentParser
 
 struct Command: ParsableCommand {
     static var configuration = CommandConfiguration(
-      commandName: "hesoten",
+      commandName: "publicist",
       abstract: "Change internal access level into public."
     )
 

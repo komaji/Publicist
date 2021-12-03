@@ -1,5 +1,5 @@
 import Foundation
-import HesotenKit
+import PublicistKit
 
 struct Runner {
     let argumentGroup: ArgumentGroup
@@ -10,14 +10,14 @@ struct Runner {
         print("📝 Rewriting \(argumentGroup.filePath)")
 
         guard let fileHandle = FileHandle(forReadingAtPath: argumentGroup.filePath) else {
-            throw HesotenError.invalidPath
+            throw PublicistError.invalidPath
         }
 
         let sourceData = fileHandle.readDataToEndOfFile()
         defer { fileHandle.closeFile() }
 
         guard let originalSource = String(data: sourceData, encoding: .utf8) else {
-            throw HesotenError.invalidFile
+            throw PublicistError.invalidFile
         }
 
         let resultSource = try AccessLevelRewriter.rewrite(source: originalSource)

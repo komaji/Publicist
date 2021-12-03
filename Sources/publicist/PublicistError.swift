@@ -1,6 +1,6 @@
 import Foundation
 
-enum HesotenError: String, LocalizedError {
+enum PublicistError: String, LocalizedError {
     case invalidPath = "invalid file path."
     case invalidFile = "invalid file."
 

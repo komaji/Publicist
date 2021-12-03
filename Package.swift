@@ -4,10 +4,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "hesoten",
+    name: "Publicist",
     products: [
-        .executable(name: "hesoten", targets: ["hesoten"]),
-        .library(name: "HesotenKit", targets: ["HesotenKit"])
+        .executable(name: "publicist", targets: ["publicist"]),
+        .library(name: "PublicistKit", targets: ["PublicistKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
@@ -15,19 +15,19 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "hesoten",
+            name: "publicist",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "HesotenKit"
+                "PublicistKit"
             ]
         ),
         .target(
-            name: "HesotenKit",
+            name: "PublicistKit",
             dependencies: ["SwiftSyntax"]
         ),
         .testTarget(
-            name: "HesotenKitTests",
-            dependencies: ["HesotenKit"]
+            name: "PublicistKitTests",
+            dependencies: ["PublicistKit"]
         )
     ]
 )
